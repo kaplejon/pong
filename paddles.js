@@ -6,6 +6,8 @@ function Paddle() {
 
 	this.y = game.height / 2 - this.height / 2
 	this.x = 20
+
+	this.score = 0
 }
 
 Paddle.prototype = Object.create(Entity.prototype)
