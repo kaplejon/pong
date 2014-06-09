@@ -1,7 +1,9 @@
 function Ball() {
-	Entity.call(this)
+  Entity.call(this)
+  
+  this.width = 20
+  this.height = 20
 
-<<<<<<< HEAD
   this.reset()
 
   // Load sound
@@ -11,18 +13,11 @@ function Ball() {
   } else {
     this.blip.src = 'blip.ogg'
   }
-=======
-	this.width = 20
-	this.height = 22
-
-	this.reset()
->>>>>>> start
 }
 
 Ball.prototype = Object.create(Entity.prototype)
 Ball.prototype.constructor = Ball
 
-<<<<<<< HEAD
 // Reset the ball's position
 Ball.prototype.reset = function() {
   this.x = game.width / 2 - this.width / 2
@@ -42,20 +37,12 @@ Ball.prototype.reset = function() {
       speed = 7
   this.xVelocity = speed * Math.cos(angle * radian)
   this.yVelocity = speed * Math.sin(angle * radian)
-=======
-Ball.prototype.reset = function() {
-	this.x = game.width/2-this.width
-	this.y = game.height/2-this.height
->>>>>>> start
 
-	var min = -5,
-		max = 5
-	this.yVelocity = Math.floor(Math.random() * (max - min + 1) + min)
-	this.xVelocity = Math.random() > 0.5 ? 5 : -5
+  // Alternate between right and left
+  if (Math.random() > 0.5) this.xVelocity *= -1
 }
 
 Ball.prototype.update = function() {
-<<<<<<< HEAD
   Entity.prototype.update.apply(this, arguments)
 
   // Detects if and which paddle we hit
@@ -93,34 +80,4 @@ Ball.prototype.update = function() {
     game.player.score += 1
     this.reset()
   }
-=======
-	Entity.prototype.update.apply(this, arguments) // super
-
-	if (this.y > game.height - this.height || this.y < 0) {
-		 this.yVelocity *= -1
-	}
-
-	if (this.x > game.width) {
-		game.player.score += 1
-		this.reset()
-	}
-
-	if (this.x < 0) {
-		game.bot.score += 1
-		this.reset()
-	}
-
-	if (this.intersect(game.bot)) {
-		var hitter = game.bot
-	} else if (this.intersect(game.player)) {
-		var hitter = game.player
-	}
-
-	if (hitter) {
-		this.xVelocity *= -1.1
-		this.yVelocity *= -1.1
-
-		this.yVelocity += hitter.yVelocity / 2
-	}
->>>>>>> start
 }

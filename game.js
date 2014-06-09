@@ -1,3 +1,5 @@
+// The game engine
+
 function Game(canvas) {
   var self = this
 
@@ -7,8 +9,13 @@ function Game(canvas) {
 
   // Keep track of key states
   // Eg.:
+<<<<<<< HEAD
   //   game.keyPressed.up === true  // while UP key is pressed)
   //   game.keyPressed.up === false // when UP key is released)
+=======
+  //   game.keyPressed.up === true  // while UP key is pressed
+  //   game.keyPressed.up === false // when UP key is released
+>>>>>>> start
   this.keyPressed = {}
 
   $(canvas).on('keydown keyup', function(e) {
@@ -33,6 +40,7 @@ Game.keys = {
   40: 'down'
 }
 
+<<<<<<< HEAD
 Game.prototype.update = function() {
   this.entities.forEach(function(entity) {
     if (entity.update) entity.update()
@@ -148,3 +156,29 @@ Game.prototype.variableTimeStep = function() {
 }
 
 ;//
+=======
+Game.prototype.start = function() {
+  var self = this,
+      fps = 60,
+      interval = 1000 / fps // ms per frame
+  
+  setInterval(function() {
+    self.update()
+    self.draw()
+  }, interval)
+}
+
+Game.prototype.update = function() {
+  this.entities.forEach(function(entity) {
+    if (entity.update) entity.update()
+  })
+}
+
+Game.prototype.draw = function() {
+  var self = this
+
+  this.entities.forEach(function(entity) {
+    if (entity.draw) entity.draw(self.context)
+  })
+}
+>>>>>>> start
